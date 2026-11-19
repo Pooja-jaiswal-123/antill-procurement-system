@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: corvo-api
+    runtime: docker
+    dockerContext: ./backend
+    dockerfilePath: ./backend/Dockerfile
+    plan: free
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: allam-2-7b
+      - key: DATABASE_URL
+        sync: false
+      - key: APP_ENV
+        value: development
+  - type: web
+    name: corvo-ui
+    runtime: docker
+    dockerContext: ./frontend
+    dockerfilePath: ./frontend/Dockerfile
+    plan: free
+    envVars:
+      - key: API_URL
+        sync: false
