@@ -1,4 +1,5 @@
 services:
+  # Backend - FastAPI
   - type: web
     name: corvo-api
     runtime: docker
@@ -9,11 +10,15 @@ services:
       - key: GROQ_API_KEY
         sync: false
       - key: GROQ_MODEL
-        value: allam-2-7b
+        value: openai/gpt-oss-120b
       - key: DATABASE_URL
         sync: false
+      - key: DEFAULT_POLICY_PATH
+        value: /etc/secrets/policy_v5_0.json
       - key: APP_ENV
         value: development
+
+  # Frontend - Next.js
   - type: web
     name: corvo-ui
     runtime: docker
